@@ -28,7 +28,7 @@ def Assign_page():
     degrees = ['Industrial Engineering', 'Mechanical engineering', 'management']
     hobbies = ('Dance', 'TV', 'Sleep')
 
-    return render_template('assignment3_1.html', user_info=user_info, user_degrees=degrees, hobbies=hobbies)
+    return render_template('assignment3_1.html', user_info=user_info, user_degrees=degrees, hobbies=hobbies, user_name='stav', user_second='cohen')
 
 
 

@@ -9,7 +9,7 @@
 <body>
 {% include('nav.html') %}
 {% if user_name %}
-<h1> Hello,{{user_name | default('stranger', true) }}  {{user_second}} </h1>
+<h1> Hello,{{user_name | capitalize() }}  {{user_second | capitalize()}} </h1>
 {% else %}
 <h1> Hello,Stranger</h1>
 {% endif %}
@@ -30,7 +30,7 @@
 <div class="container">
     <h2> User Hobbies</h2>
     <ul>
-        {% for i in hobbies %}
+        {% for i in hobbies |sort %}
         <li> {{ i}}</li>
         {% endfor %}
     </ul>

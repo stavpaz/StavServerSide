@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>assignment3_1</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
-    <script defer src="{{url_for('static', filename='scripts.js')}}"></script>
-</head>
-<body>
+{% extends 'blocks.html' %}
+{% block content %}
 {% include('nav.html') %}
 {% if user_name %}
 <h1> Hello,{{user_name | capitalize() }}  {{user_second | capitalize()}} </h1>
@@ -25,6 +18,7 @@
     <p>
 
         {{user_degrees[0]}}
+        {{ super() }}
     </p>
 </div>
 <div class="container">
@@ -36,5 +30,4 @@
     </ul>
 </div>
  {% include('footer.html') %}
-</body>
-</html>
+{% endblock %}

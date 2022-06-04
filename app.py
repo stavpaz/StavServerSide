@@ -30,18 +30,16 @@ def Assign_page():
 
     return render_template('assignment3_1.html', user_info=user_info, user_degrees=degrees, hobbies=hobbies, user_name='stav', user_second='cohen')
 
-
+@app.route('/blocks')
+def blocks_page():
+    return redirect('/assignment3_1.html')
 
 
 @app.route('/openyourmind.html')
 def OpenYourMind_page():
     return render_template('openyourmind.html', user_name='stav', user_second='cohen')
 
-var=23
 
-@app.route('/test')
-def test_page():
-    return f'welcome ,{var}'
 if __name__ == '__main__':
     app.run(debug=True)
 

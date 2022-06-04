@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
+    <script defer src="{{url_for('static', filename='scripts.js')}}"></script>
+
+</head>
+<body>
+{% include('nav.html') %}
+    <center>
+        <div class="title">
+            <header id="titledesign">
+            <h1> Our Gallery</h1>
+        </header>
+        </div>
+    </center>
+<div id="Designcontainer">
+    <div class="Designslide">
+        <img src="{{url_for('static', filename='bethrooms.PNG')}}" alt="">
+    </div>
+    <div class="Designslide">
+        <img src="{{url_for('static', filename='try.PNG')}}" alt="">
+    </div>
+    <div class="Designslide">
+        <img src="{{url_for('static', filename='g.jpg')}}" alt="">
+    </div>
+    <div class="Designslide">
+        <img src="{{url_for('static', filename='room.jpg')}}" alt="">
+    </div>
+
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='bethrooms2.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='bethrooms3.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='bethrooms4.jpg')}}" alt="">
+        </div>
+
+
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='bethrom6.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='bethroom7.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='bethroom8.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='kitchen 5.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='kitchens3.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='livingroom.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='kitchen2.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='kitchen4.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='kitchen3.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='room2.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='room3.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='room4.jpg')}}" alt="">
+        </div>
+        <div class="Designslide">
+            <img src="{{url_for('static', filename='room5.jpg')}}" alt="">
+        </div>
+
+        <div class="btnload">
+            <button class="btn" id="bt" onclick="anim()">load more</button>
+            <div class="designcontainerbutton">
+                <div class="dot dot1" id="dott1"></div>
+                <div class="dot dot2" id="dott2"></div>
+                <div class="dot dot3" id="dott3"></div>
+            </div>
+
+        </div>
+
+</div>
+
+
+</body>
+</html>

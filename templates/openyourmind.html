@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
+    <script src="{{url_for('static', filename='scripts.js')}}"></script>
+    <title>Grid</title>
+</head>
+
+<body id="Gridbody">
+    <div class="gridContainer">
+        <header id="GridPage">
+           {% include('nav.html') %}
+        </header>
+
+
+        <div class="PageImage GridPage"></div>
+
+        <main id="ma">
+            <div id="text">
+                <div class="title">
+					<header>
+                        <h3>Open Your Mind</h3>
+				</header>
+                </div>
+                <div class="content">
+                    <br>
+                    <br>
+
+                    <p id="p">Design your home <br> in a way it will be practical and well design.
+                    <br> Take your time and plan well before you start.</p>
+
+                </div>
+            </div>
+        </main>
+
+  {% include('footer.html') %}
+
+    </div>
+</body>
+
+</html>

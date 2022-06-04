@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>assignment3_1</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
+    <script defer src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+<body>
+{% include('nav.html') %}
+{% if user_name %}
+<h1> Hello,{{user_name | default('stranger', true) }}  {{user_second}} </h1>
+{% else %}
+<h1> Hello,Stranger</h1>
+{% endif %}
+<div class="container">
+    <h2> User Information</h2>
+    <p> {% for title , value in user_info.items() %}
+    <h3>  {{title}} : {{ value}} </h3>
+        {% endfor %}
+    </p>
+</div>
+<div class="container">
+    <h2> User Degrees</h2>
+    <p>
+
+        {{user_degrees[0]}}
+    </p>
+</div>
+<div class="container">
+    <h2> User Hobbies</h2>
+    <ul>
+        {% for i in hobbies %}
+        <li> {{ i}}</li>
+        {% endfor %}
+    </ul>
+</div>
+ {% include('footer.html') %}
+</body>
+</html>

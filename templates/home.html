@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
+    <script defer src="{{url_for('static', filename='scripts.js')}}"></script>
+
+</head>
+<body id="HomeBody">
+
+    <nav>
+        <center class="navtoall" id="imagecenter">
+       <a class="headerhome" href="{{url_for('Home_page')}}">Homepage </a> &nbsp &nbsp &nbsp
+        <a class="headerhome" href="{{url_for('AboutUs_page')}}"> AboutUs</a> &nbsp &nbsp &nbsp
+        <a class="headerhome" href="{{url_for('Design_page')}}"> Designs</a> &nbsp &nbsp &nbsp
+        <a class="headerhome" href="{{url_for('ContactUs_page')}}"> ContactUs  </a>
+        </center>
+    </nav>
+
+	 <center>
+        <div class="title">
+        <header id="titlehome">
+        <h1>Home Design</h1>
+        </header>
+        </div>
+     </center>
+    <div id="assignment">
+    <a href="assignment3_1.html"> assignment3_1  </a>
+        </div>
+  <div class="images">
+     <div class="slider">
+         <div class="sliders">
+   <input type="radio" name="radio-btn" id="bt1">
+   <input type="radio" name="radio-btn" id="bt2">
+   <input type="radio" name="radio-btn" id="bt3">
+   <input type="radio" name="radio-btn" id="bt4">
+   <input type="radio" name="radio-btn" id="bt5">
+
+   <div class="slide first">
+     <img src="{{url_for('static', filename='room.jpg')}}" alt="">
+   </div>
+   <div class="slide">
+    <img src="{{url_for('static', filename='bethrooms.PNG')}}" alt="">
+   </div>
+   <div class="slide">
+    <img src="{{url_for('static', filename='try.PNG')}}" alt="">
+   </div>
+   <div class="slide">
+    <img src="{{url_for('static', filename='bethroom7.jpg')}}" alt="">
+   </div>
+
+
+  <div class="navigator">
+  <div class="auto1"></div>
+  <div class="auto2"></div>
+  <div class="auto3"></div>
+  <div class="auto4"></div>
+  </div>
+           <div class="navigator-manual">
+            <label for="bt1" class="manu-btn"></label>
+            <label for="bt2" class="manu-btn"></label>
+            <label for="bt3" class="manu-btn"></label>
+            <label for="bt4" class="manu-btn"></label>
+           </div>
+       </div>
+
+
+      </div>
+
+
+  </div>
+
+  <footer class="footer" id="footerhome">
+    <div class="containerfooter">
+        <div class="row">
+            <div class="footer-col">
+                <h4>company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"><img src="{{url_for('static', filename='facebook.png')}}" alt=""></i></a>
+						<a href="#"><i class="fab fa-twitter"></i><img src="{{url_for('static', filename='twitter.png')}}" alt=""></a>
+						<a href="#"><i class="fab fa-instagram"></i><img src="{{url_for('static', filename='instagram.jfif')}}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </footer>
+</body>
+</html>

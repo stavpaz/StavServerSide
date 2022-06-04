@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
+    <script defer src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+<body>
+{% include('nav.html') %}
+	<div class="section">
+		<div class="container">
+			<div class="content-section">
+				<div class="title">
+                    <header id="titleforms">
+					<h1>Contact Us</h1>
+                </header>
+				</div>
+				<div class="content">
+                    <form action="url" method="get">
+                        <label class="headers" for="FirstName">First Name</label>
+                        <input type="text" name="FirstName" id="FirstName"  pattern="[A-Za-z]{1,15}" required> <br>
+                        <label class="headers" for="Email">Email</label>
+                        <input type="email" name="Email" id="Email" required > <br>
+                        <label class="headers" for="PhoneNumber" >Phone Number</label>
+                        <input type="tel" name="PhoneNumber" id="PhoneNumber" required pattern="[0][5][0-9]-[0-9][0-9][0-9][0-9][0-9][0-9][0-9]" > <br>
+                        <label class="headers" for="date" > please choose date for possible meeting</label> <br>
+                        <input type="date" name="date" id="date"> <br>
+                        <label class="headers" for="time" > please choose time for possible meeting</label> <br>
+                        <input type="time" name="time" id="time" min="08:00" max="20:00"><br>
+                        <label class="headers" for="info" style=>Information</label> <br>
+                        <textarea id="info" name="info" placeholder="Write something.." style="height:100px;width: 300px;" ;required minlength="5" maxlength="200"></textarea>  <br>
+                        <input type="submit" name="submit" id="submit"> <br>
+
+                            </form>
+
+				</div>
+
+			</div>
+			<div class="Formsimage-section">
+				<img src="{{url_for('static', filename='contact1.jpg')}}">
+			</div>
+		</div>
+	</div>
+  {% include('footer.html') %}
+
+</body>
+</html>

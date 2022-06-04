@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About Us </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" href="{{url_for('static', filename='CssAll.css')}}">
+    <script defer src="{{url_for('static', filename='scripts.js')}}"></script>
+</head>
+<body>
+	{% include('nav.html') %}
+	<div class="section">
+		<div class="Aboutcontainer">
+			<div class="content-section">
+				<div class="title">
+					<header>
+					<h1>About Us</h1>
+				</header>
+				</div>
+				<div class="content">
+					<h3>Stav Cohen , Industrial engineering student</h3>
+					<p> Designing homes is not easy, to make it easier for you,
+                         we have collected a variety of different designs that will inspire you to design the house of your dreams.
+
+                    </p>
+					<div class="Aboutbutton">
+						<a href="openyourmind.html">Read More</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="image-section">
+				<img src="{{url_for('static', filename='about1.jpg')}}">
+			</div>
+		</div>
+	</div>
+	 {% include('footer.html') %}
+
+</body>
+</html>

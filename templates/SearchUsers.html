@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Search User </h1>
+
+    <form action="/Search">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="submit" value="Search">
+    </form>
+
+    {% if name %}
+        <h2>{{ name }}</h2>
+        <h3>email: {{ email }}</h3>
+    {% else %}
+        {% if email %}
+        <h2>{{ name }}</h2>
+        <h3>email: {{ email }}</h3>
+        {% else %}
+          {% if message %}
+            <h3 style="color: red">{{ message }}</h3>
+          {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% if user_dict %}
+          <ol>
+            {% for k, v in user_dict.items() %}
+                <li><h2>Name: {{ k }}</h2></li>
+            {% endfor %}
+          </ol>
+    {% endif %}
+</body>
+</html>

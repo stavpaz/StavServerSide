@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if session['logedin'] %}
+        <h1>Welcome, {{ session['username'] | upper() }}</h1>
+         <a href="{{url_for('logout_func')}}" style="color: #000000">logout</a>
+    {% else %}
+        <h1>Welcome to Log-In Page</h1>
+        {% if message %}
+            <h2>{{ message }}</h2>
+        {% endif %}
+        <h2>Login Form:</h2>
+        <form action="/log_in" method="post">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit">
+        </form>
+    {% endif %}
+</body>
+</html>

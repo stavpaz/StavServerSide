@@ -67,6 +67,13 @@ user_dict = {
     'ziv': {'name': 'ziv', 'email': 'ziv@gmail.com'}
 }
 
+def Indict_func(inputs):
+
+    for k, v in user_dict.items():
+        if(v['email']).__eq__(inputs):
+            print(v['email'])
+            return(v['name'])
+    return('')
 
 @app.route('/Search')
 def search_func():
@@ -82,14 +89,13 @@ def search_func():
                 return render_template('SearchUsers.html', user_dict=user_dict)
             else:
                 if 'email' in request.args:
-                    name = request.args['name']
                     email = request.args['email']
-                    if email in user_dict['name'][email]:
+                    name = Indict_func(email)
+                    if name!='':
                         return render_template('SearchUsers.html',
-                                               name=user_dict['name']['email'],
+                                               name=name,
                                                email=email)
                     else:
-
                             return render_template('SearchUsers.html', message='User not found.')
                 return render_template('SearchUsers.html', user_dict=user_dict)
             return render_template('SearchUsers.html', user_dict=user_dict)

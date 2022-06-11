@@ -3,8 +3,8 @@
 {% include('nav.html') %}
 <div>
 {% if session['logedin'] %}
-        <h1>Welcome, {{ session['username'] | upper() }}</h1><br>
-        <h3>Search User </h3>
+        <h1>Welcome, {{ session['username'] | upper() }}</h1><br> <br>
+        <h3>Search User </h3> <br>
          <form action="/Search">
         <input type="text" name="name" placeholder="Name">
         <input type="text" name="email" placeholder="Email">
@@ -35,7 +35,6 @@
     <center>
          <a href="{{url_for('Assign_page')}}" style="color: #000000">Assignment3_1 </a><br>
          <a href="{{url_for('Assign2_page')}}" style="color: #000000">Assignment3_2 </a><br>
-         <a href="{{url_for('search_func')}}" style="color: #000000">Search </a><br>
          <a href="{{url_for('logout_func')}}" style="color: #000000">Logout</a><br>
         </center>
 {% endif %}

@@ -28,10 +28,13 @@
          <a href="{{url_for('logout_func')}}" style="color: #000000">Logout</a><br>
     {% else %}
      <a href="{{url_for('Assign_page')}}" style="color: #000000">Assignment3_1 </a><br>
-    <a href="{{url_for('Assign2_page')}}" style="color: #000000">Assignment3_2 </a><br>
+     <a href="{{url_for('Assign2_page')}}" style="color: #000000">Assignment3_2 </a><br>
      <a href="{{url_for('register_func')}}" style="color: #000000">Register</a><br>
     {% endif %}
 </div>
+<div class="image-section">
+				<img src="{{url_for('static', filename='about1.jpg')}}">
+			</div>
 <br>
 <br>
 <br>

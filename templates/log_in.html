@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'blocks.html' %}
+{% block content %}
+{% include('nav.html') %}
+<div>
 {% if session['logedin'] %}
         <h1>Welcome, {{ session['username'] | upper() }}</h1>
          <a href="{{url_for('logout_func')}}" style="color: #000000">logout</a>
@@ -20,5 +17,6 @@
             <input type="submit">
         </form>
     {% endif %}
-</body>
-</html>
+</div>
+{% include('footer.html') %}
+{% endblock %}

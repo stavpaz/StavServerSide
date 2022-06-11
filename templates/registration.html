@@ -1,25 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'blocks.html' %}
+{% block content %}
+{% include('nav.html') %}
+<div class="section">
+		<div class="container">
+			<div class="content-section">
+				<div class="title">
+                    <header id="titleforms">
+					<h1>Registration</h1>
+                </header>
+				</div>
+				<div class="content">
 {% if session['logedin'] %}
         <h1>Welcome, {{ session['username'] | upper() }}</h1>
          <a href="{{url_for('logout_func')}}" style="color: #000000">logout</a>
 {% endif %}
-<h2>Registration Form:</h2>
+
         <form action="/registration" method="post">
-            <input type="text" name="inputUsername" placeholder="Username">
-            <input type="email" name="inputEmail" placeholder="Email">
-            <input type="password" name="inputPassword" placeholder="Password">
-            <input type="password" name="inputConfirmPassword" placeholder="RePassword">
+            <label class="headers" for="inputUsername">User Name</label>
+            <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username" pattern="[A-Za-z]{1,15}" required> <br>
+            <label class="headers" for="inputEmail">Email</label>
+            <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
+            <label class="headers" for="inputPassword">Password</label>
+            <input type="password" name="inputPassword" id="inputPassword" placeholder="Password" minlength="6" required><br>
+            <label class="headers" for="inputConfirmPassword">Confirm Password</label>
+            <input type="password" name="inputConfirmPassword" id="inputConfirmPassword" placeholder="RePassword" minlength="6" required><br> <br>
             <input type="submit">
         </form>
 {% if message %}
             <h2>{{ message }}</h2>
 {% endif %}
+</div>
 
-</body>
-</html>
+			</div>
+			<div class="Formsimage-section">
+				<img src="{{url_for('static', filename='contact1.jpg')}}">
+			</div>
+		</div>
+	</div>
+ {% include('footer.html') %}
+{% endblock %}

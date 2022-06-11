@@ -3,10 +3,16 @@
 {% include('nav.html') %}
 <div>
 
-<a href="{{url_for('login_func')}}" style="color: #000000">Please sign in </a> <br>
- <a href="{{url_for('search_func')}}" style="color: #000000">Search </a><br>
+ {% if session['logedin'] %}
+        <h1>Welcome, {{ session['username'] | upper() }}</h1><br>
+         <a href="{{url_for('search_func')}}" style="color: #000000">Search </a><br>
+         <a href="{{url_for('logout_func')}}" style="color: #000000">Logout</a><br>
+{% else %}
+ <a href="{{url_for('login_func')}}" style="color: #000000">Sign in </a> <br>
  <a href="{{url_for('register_func')}}" style="color: #000000">Register</a><br>
-<a href="{{url_for('logout_func')}}" style="color: #000000">logout</a>
+{% endif %}
+
+
 </div>
  {% include('footer.html') %}
 {% endblock %}

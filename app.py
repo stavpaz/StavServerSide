@@ -131,12 +131,12 @@ def register_func():
         if Repassword == password:
             session['username'] = username
             session['logedin'] = True
-            return render_template('log_in.html',
+            return render_template('assignment3_2.html',
                                    message='Success',
                                    username=username)
         else:
             return render_template('registration.html',
-                                   message='Passwords not match!')
+                                   message='Passwords dont match,please register again')
     return render_template('registration.html')
 
 @app.route('/log_out')

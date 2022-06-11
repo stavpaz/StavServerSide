@@ -105,7 +105,7 @@ def search_func():
 sign_dict={
     'stav':'123123',
     'tal':'111111',
-    'eden':'0000'
+    'einav':'000000'
 }
 @app.route('/log_in', methods=['GET', 'POST'])
 def login_func():

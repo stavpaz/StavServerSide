@@ -122,6 +122,22 @@ def login_func():
                                    message='Please sign in!')
     return render_template('log_in.html')
 
+@app.route('/registration', methods=['GET', 'POST'])
+def register_func():
+    if request.method == 'POST':
+        username = request.form.get('inputUsername')
+        password = request.form.get('inputPassword')
+        Repassword = request.form.get('inputConfirmPassword')
+        if Repassword == password:
+            session['username'] = username
+            session['logedin'] = True
+            return render_template('log_in.html',
+                                   message='Success',
+                                   username=username)
+        else:
+            return render_template('registration.html',
+                                   message='Passwords not match!')
+    return render_template('registration.html')
 
 @app.route('/log_out')
 def logout_func():

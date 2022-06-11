@@ -1,13 +1,15 @@
 {% extends 'blocks.html' %}
 {% block content %}
 {% include('nav.html') %}
-{% if user_name %}
+{% if session['logedin'] %}
+        <h1>Welcome, {{ session['username'] | upper() }}</h1><br>
+{% elif user_name %}
 <h1> Hello,{{user_name | capitalize() }}  {{user_second | capitalize()}} </h1>
 {% else %}
 <h1> Hello,Stranger</h1>
 {% endif %}
 <div class="container">
-    <h2> User Information</h2>
+    <h2> Website Creator's Information </h2> <br>
     <p> {% for title , value in user_info.items() %}
     <h3>  {{title}} : {{ value}} </h3>
         {% endfor %}
@@ -29,5 +31,18 @@
         {% endfor %}
     </ul>
 </div>
+{% if session['logedin'] %}
+<center>
+         <a href="{{url_for('Assign2_page')}}" style="color: #000000">Assignment3_2 </a><br>
+         <a href="{{url_for('search_func')}}" style="color: #000000">Search </a><br>
+         <a href="{{url_for('logout_func')}}" style="color: #000000">Logout</a><br>
+</center>
+{% else %}
+<center>
+<a href="{{url_for('Assign2_page')}}" style="color: #000000">Assignment3_2 </a><br>
+ <a href="{{url_for('login_func')}}" style="color: #000000">Sign in </a> <br>
+ <a href="{{url_for('register_func')}}" style="color: #000000">Register</a><br>
+</center>
+{% endif %}
  {% include('footer.html') %}
 {% endblock %}

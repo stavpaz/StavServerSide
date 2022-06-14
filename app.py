@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for
 from flask import render_template
 from datetime import timedelta
 from flask import request, session, jsonify
+import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = '123'
@@ -132,11 +133,16 @@ def login_func():
 def register_func():
     if request.method == 'POST':
         username = request.form.get('inputUsername')
+        email=request.form.get('inputEmail')
         password = request.form.get('inputPassword')
         Repassword = request.form.get('inputConfirmPassword')
         if Repassword == password:
             session['username'] = username
             session['logedin'] = True
+            user_dict[username]={username,email,password}
+            sign_dict[username]= password
+            print(user_dict)
+            print(sign_dict)
             return render_template('assignment3_2.html',
                                    message='Success',
                                    username=username)

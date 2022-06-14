@@ -2,9 +2,10 @@
 {% block content %}
 {% include('nav.html') %}
 {% if session['logedin'] %}
-        <h1>Welcome, {{ session['username'] | upper() }}</h1><br>
+        <h1>Welcome, {{ session['username'] | upper() }} <br> <h3>you are in assignment3_1 page </h3></h1><br>
 {% else %}
-<h1> Hello,Stranger</h1>
+<h1> Hello,Stranger  <br>
+   <h3>you are in assignment3_1 page </h3><</h1>
 {% endif %}
 <div class="container">
     <h2> Website Creator's Information - {{user_name | capitalize() }}  {{user_second | capitalize()}} </h2> <br>

@@ -28,7 +28,7 @@
     {% if user_dict %}
           <ol>
             {% for k, v in user_dict.items() %}
-                <li><h2>Name: {{ k }}</h2></li>
+                <li><h2>Name: {{ v['name'] }}</h2></li>
             {% endfor %}
           </ol>
     {% endif %}

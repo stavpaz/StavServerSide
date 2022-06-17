@@ -61,11 +61,11 @@ def Assign2_page():
 
 
 user_dict = {
-    'stav': {'name': 'stav', 'email': 'stav@gmail.com'},
-    'tal': {'name': 'tal', 'email': 'tal@gmail.com'},
-    'einav': {'name': 'einav', 'email': 'einav@gmail.com'},
-    'noam': {'name': 'noam', 'email': 'noam@gmail.com'},
-    'ziv': {'name': 'ziv', 'email': 'ziv@gmail.com'}
+    'stavCO': {'name': 'stav', 'email': 'stav@gmail.com'},
+    'talGU': {'name': 'tal', 'email': 'tal@gmail.com'},
+    'einavML': {'name': 'einav', 'email': 'einav@gmail.com'},
+    'noamAV': {'name': 'noam', 'email': 'noam@gmail.com'},
+    'zivIN': {'name': 'ziv', 'email': 'ziv@gmail.com'}
 }
 
 def Indict_func(inputs):
@@ -75,40 +75,63 @@ def Indict_func(inputs):
             print(v['email'])
             return(v['name'])
     return('')
+def IndictName_func(inputs):
 
+    for k, v in user_dict.items():
+        if(v['name']).__eq__(inputs):
+            print(v['name'])
+            return(v['email'])
+    return('')
 @app.route('/Search')
 def search_func():
     if 'name' in request.args:
         name = request.args['name']
         email = request.args['email']
-        if name in user_dict:
+        if IndictName_func(name)!='' and email=='':
+            email=IndictName_func(name)
             return render_template('SearchUsers.html',
                                    name=name,
-                                   email=user_dict[name]['email'])
+                                   email=email)
         else:
             if name=='' and email=='':
                 return render_template('SearchUsers.html', user_dict=user_dict)
             else:
                 if 'email' in request.args:
                     email = request.args['email']
-                    name = Indict_func(email)
-                    if name!='':
+                    name = request.args['name']
+                    if Indict_func(email)!='' and name=='':
+                        name = Indict_func(email)
                         return render_template('SearchUsers.html',
                                                name=name,
                                                email=email)
                     else:
-                            return render_template('SearchUsers.html', message='User not found.')
+                           if name!='' and email!='':
+                               if Indict_func(email)==name:
+                                  return render_template('SearchUsers.html',
+                                                      name=name,email=email)
+                               else:
+                                    return render_template('SearchUsers.html', message='User not found.')
+                           else:
+                                if IndictName_func(name)!='':
+                                   email=IndictName_func(name)
+                                   return render_template('SearchUsers.html',
+                                                       name=name, email=email)
+                                else:
+                                    if IndictName_func(name) == '':
+                                        return render_template('SearchUsers.html', message='User not found.')
+                                    else:
+                                      return render_template('SearchUsers.html', user_dict=user_dict)
                 return render_template('SearchUsers.html', user_dict=user_dict)
             return render_template('SearchUsers.html', user_dict=user_dict)
     return render_template('SearchUsers.html', user_dict=user_dict)
 
 
 sign_dict={
-    'stav':'123123',
-    'tal':'111111',
-    'einav':'000000',
-    'noam':'123456',
-    'ziv':'999999'
+    'stavCO':'123123',
+    'talGU':'111111',
+    'einavML':'000000',
+    'noamAV':'123456',
+    'zivIN':'999999'
 }
 @app.route('/log_in', methods=['GET', 'POST'])
 def login_func():
@@ -128,20 +151,27 @@ def login_func():
                                        message='Wrong password!')
         else:
             return render_template('log_in.html',
-                                   message='Please sign in!')
+                                   message='Username doesnt exist')
     return render_template('log_in.html')
+
+def Register_func(inputs):
+    for k, v in user_dict.items():
+        if(k).__eq__(inputs):
+            return(False)
+    return(True)
 
 @app.route('/registration', methods=['GET', 'POST'])
 def register_func():
     if request.method == 'POST':
+        name=request.form.get('inputname')
         username = request.form.get('inputUsername')
         email=request.form.get('inputEmail')
         password = request.form.get('inputPassword')
         Repassword = request.form.get('inputConfirmPassword')
-        if Repassword == password:
+        if Repassword == password and Register_func(username):
             session['username'] = username
             session['logedin'] = True
-            user_dict[username]={username,email,password}
+            user_dict[username]={'name':name,'email':email}
             sign_dict[username]= password
             print(user_dict)
             print(sign_dict)
@@ -150,7 +180,7 @@ def register_func():
                                    username=username)
         else:
             return render_template('registration.html',
-                                   message='Passwords dont match,please register again')
+                                   message='Passwords dont match or user name already exists,please register again')
     return render_template('registration.html')
 
 @app.route('/log_out')

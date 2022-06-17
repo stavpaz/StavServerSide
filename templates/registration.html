@@ -16,8 +16,10 @@
 {% endif %}
 
         <form action="/registration" method="post">
+            <label class="headers" for="inputname">Name</label>
+            <input type="text" name="inputname"  id ="inputname" placeholder="name" pattern="[A-Za-z]{1,15}" required> <br>
             <label class="headers" for="inputUsername">User Name</label>
-            <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username" pattern="[A-Za-z]{1,15}" required> <br>
+            <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username"  required> <br>
             <label class="headers" for="inputEmail">Email</label>
             <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
             <label class="headers" for="inputPassword">Password</label>

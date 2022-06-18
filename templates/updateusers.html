@@ -1,0 +1,15 @@
+{% extends 'blocks.html' %}
+{% block content %}
+{% include('nav.html') %}
+    <div class="container">
+    <h2>Insert Form</h2>
+        <form action="/updateuser" method="post">
+            <input type="text" name="inputusername"  id ="inputusername" value={{username}}>
+            <input type="text" name="inputname"  id ="inputname" placeholder="name" pattern="[A-Za-z]{1,15}" required> <br>
+            <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
+            <input type="password" name="inputPassword" id="inputPassword" placeholder="Password" minlength="6" required><br>
+            <input type="submit" value="update">
+        </form>
+    </div>
+ {% include('footer.html') %}
+{% endblock %}

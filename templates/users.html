@@ -1,0 +1,40 @@
+{% extends 'blocks.html' %}
+{% block content %}
+{% include('nav.html') %}
+<div>
+     <h1>Users Page</h1>
+
+
+    <div class="container">
+    <h2>Insert Form</h2>
+
+
+            <input type="text" name="inputname"  id ="inputname" placeholder="name" pattern="[A-Za-z]{1,15}" required> <br>
+            <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username"  required> <br>
+            <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
+            <input type="password" name="inputPassword" id="inputPassword" placeholder="Password" minlength="6" required><br>
+            <input type="submit">
+
+
+        </form>
+    </div>
+
+    {% for user in users %}
+        <div class="container">
+{#            {{ user }}#}
+            <h3>{{ user.name }}</h3>
+            <h4>Email: {{ user.email }}</h4>
+             <form action="/update_user" method="post">
+                 <input type="hidden" name="user_id" value="{{ user.username }}">
+                 <input type="submit" value="update">
+             </form>
+            <form action="/delete_user" method="post">
+                <input type="hidden" name="user_id" value="{{ user.username }}">
+                <input type="submit" value="Delete">
+            </form>
+
+        </div>
+    {% endfor %}
+</div>
+ {% include('footer.html') %}
+{% endblock %}

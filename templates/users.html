@@ -8,7 +8,7 @@
     <div class="container">
     <h2>Insert Form</h2>
 
-
+        <form action="/insert_user" method="post">
             <input type="text" name="inputname"  id ="inputname" placeholder="name" pattern="[A-Za-z]{1,15}" required> <br>
             <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username"  required> <br>
             <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
@@ -19,7 +19,7 @@
         </form>
     </div>
 
-    {% for user in users %}
+    {% for user in users  | sort %}
         <div class="container">
 {#            {{ user }}#}
             <h3>{{ user.name }}</h3>

@@ -194,7 +194,9 @@ def logout_func():
 def session_func():
     # print(session['CHECK'])
     return jsonify(dict(session))
-
+@app.route('/assignment4.html')
+def Assign4_page():
+    return render_template('assignment4.html')
 def interact_db(query, query_type: str):
     return_value = False
     connection = mysql.connector.connect(host='localhost',

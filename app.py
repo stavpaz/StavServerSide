@@ -201,7 +201,7 @@ def interact_db(query, query_type: str):
     return_value = False
     connection = mysql.connector.connect(host='localhost',
                                          user='root',
-                                         passwd='Spc19375#',
+                                         passwd='',
                                          database='myflaskappdb')
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)

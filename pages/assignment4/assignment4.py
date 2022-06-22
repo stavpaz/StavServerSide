@@ -1,3 +1,8 @@
+#import os
+#from dotenv import load_dotenv
+#load_dotenv()
+#'f'os.environ.get('DB_PASSWORD')'
+
 from flask import Blueprint, render_template, session, jsonify, request, redirect
 import mysql.connector
 assignment4 = Blueprint('assignment4', __name__,
@@ -33,7 +38,7 @@ def interact_db(query, query_type: str):
 
 @assignment4.route('/assignment4')
 def Assign4_page():
-    return render_template('assignment4.html')
+    return render_template('assignment_4.html')
 @assignment4.route('/users')
 def users():
     query = 'select * from users'
@@ -49,7 +54,9 @@ def insert_user():
     #print(f'{name} {email} {password}')
     query = "INSERT INTO users(username,name, email, password) VALUES ('%s','%s', '%s', '%s')" % (username,name, email, password)
     interact_db(query=query, query_type='commit')
-    return redirect('/users')
+    query = 'select * from users'
+    users_list = interact_db(query, query_type='fetch')
+    return render_template('users.html',message='user added successfully',users=users_list)
 
 @assignment4.route('/updateuser', methods=['POST'])
 def up_user():
@@ -59,7 +66,9 @@ def up_user():
     password = request.form['inputPassword']
     query = "UPDATE users SET name ='%s',email ='%s',password='%s'WHERE username='%s';" % (name, email, password,username)
     interact_db(query=query, query_type='commit')
-    return redirect('/users')
+    query = 'select * from users'
+    users_list = interact_db(query, query_type='fetch')
+    return render_template('users.html',message='user details update successfully',users=users_list)
 
 @assignment4.route('/update_user', methods=['GET','POST'])
 def update_user():
@@ -73,4 +82,6 @@ def delete_user_func():
     query = "DELETE FROM users WHERE username='%s';" % user_id
     # print(query)
     interact_db(query, query_type='commit')
-    return redirect('/users')
+    query = 'select * from users'
+    users_list = interact_db(query, query_type='fetch')
+    return render_template('users.html',message='user deleted successfully',users=users_list)

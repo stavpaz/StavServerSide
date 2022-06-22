@@ -13,12 +13,14 @@
             <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username"  required> <br>
             <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
             <input type="password" name="inputPassword" id="inputPassword" placeholder="Password" minlength="6" required><br>
-            <input type="submit">
+            <input type="submit" onclick="popmessages()">
 
 
         </form>
     </div>
-
+{% if message %}
+            <h3 style="color: red">{{ message }}</h3>
+          {% endif %}
     {% for user in users  | sort %}
         <div class="container">
 {#            {{ user }}#}
@@ -30,7 +32,7 @@
              </form>
             <form action="/delete_user" method="post">
                 <input type="hidden" name="user_id" value="{{ user.username }}">
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" onclick="popmessages()">
             </form>
 
         </div>

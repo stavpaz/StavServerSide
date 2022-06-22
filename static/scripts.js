@@ -6,6 +6,15 @@ link.classList.add('active');
 }
 });
 
+function popmessages()
+{
+    window.postMessage('the action completed successfuly')
+}
+
+
+
+
+
 /* Home page - slider photos */
 var counter=1;
 function SlidePhotos  (){

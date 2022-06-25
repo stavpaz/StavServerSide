@@ -1,10 +1,11 @@
-#import os
-#from dotenv import load_dotenv
-#load_dotenv()
-#'f'os.environ.get('DB_PASSWORD')'
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 from flask import Blueprint, render_template, session, jsonify, request, redirect
 import mysql.connector,requests
+
+
 assignment4 = Blueprint('assignment4', __name__,
                          static_folder='static',
                          template_folder='templates')
@@ -13,7 +14,7 @@ def interact_db(query, query_type: str):
     return_value = False
     connection = mysql.connector.connect(host='localhost',
                                          user='root',
-                                         passwd='',
+                                         passwd=os.environ.get('DB_PASSWORD'),
                                          database='myflaskappdb')
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)
@@ -92,7 +93,7 @@ def delete_user_func():
     users_list = interact_db(query, query_type='fetch')
     return render_template('users.html',message='user deleted successfully',users=users_list)
 
-@assignment4.route('/assignment4/frontend')
+@assignment4.route('/assignment4/users')
 def js_users():
     query = 'select * from users'
     users_list = interact_db(query, query_type='fetch')

@@ -55,6 +55,8 @@ def insert_user():
     #print(f'{name} {email} {password}')
     query = "INSERT INTO users(username,name, email, password) VALUES ('%s','%s', '%s', '%s')" % (username,name, email, password)
     interact_db(query=query, query_type='commit')
+    query = "INSERT INTO usersid(user_name) VALUES ('%s')"  % (username)
+    interact_db(query=query, query_type='commit')
     query = 'select * from users'
     users_list = interact_db(query, query_type='fetch')
     return render_template('users.html',message='user added successfully',users=users_list)
@@ -80,6 +82,9 @@ def update_user():
 @assignment4.route('/delete_user', methods=['POST'])
 def delete_user_func():
     user_id = request.form['user_id']
+    query = "DELETE FROM usersid WHERE user_name='%s';" % user_id
+    # print(query)
+    interact_db(query, query_type='commit')
     query = "DELETE FROM users WHERE username='%s';" % user_id
     # print(query)
     interact_db(query, query_type='commit')
@@ -129,3 +134,22 @@ def URL_JSON():
     else:
         session.clear()
     return render_template('frontend.html')
+
+
+@assignment4.route('/assignment4/restapi_users/', methods=['GET'])
+def get_default_user():
+    query = 'select * from users where username="stavCO"'
+    user = interact_db(query, query_type='fetch')
+    return jsonify(user)
+
+
+@assignment4.route('/assignment4/restapi_users/<int:USER_ID>',methods=['GET'])
+def get_user(USER_ID):
+    query = "select * from users where id='%s'" % USER_ID
+    user = interact_db(query, query_type='fetch')
+    if user:
+        return jsonify(user)
+    return jsonify({
+        'error': '404',
+        'message': 'User not exist '
+    })

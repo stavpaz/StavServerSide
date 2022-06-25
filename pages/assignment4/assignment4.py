@@ -145,7 +145,7 @@ def get_default_user():
 
 @assignment4.route('/assignment4/restapi_users/<int:USER_ID>',methods=['GET'])
 def get_user(USER_ID):
-    query = "select * from users where id='%s'" % USER_ID
+    query = "select * from users join usersid on users.username=usersid.user_name where id='%s'" % USER_ID
     user = interact_db(query, query_type='fetch')
     if user:
         return jsonify(user)

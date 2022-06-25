@@ -2,15 +2,34 @@
 {% block content %}
 {% include('nav.html') %}
 <div>
- <form action="/assignment4/outer_source">
+ <form action="/assignment4/outer_source" method="get">
             <label>User ID : </label>
             <input type="text" name="userID"  id ="userID"><br>
+            <input type="submit" value="Search">
         </form>
+
+
+     <h1>BackEnd</h1>
+
+
+    {% if session.userlist %}
+        {% for user in session.userlist %}
+            <h4>UserID: {{ user.id }}</h4>
+            <img src="{{ user.pic }}" alt="pic">
+            <h4>Name: {{ user.name }}</h4>
+            <h4>Email: {{ user.email }}</h4>
+
+            <hr>
+        {% endfor %}
+    {% endif %}
+    <h1> FrontEnd </h1>
     <h3>User: <button onclick="myFunction()">Search</button></h3>
 
     <main>
 
     </main>
+
+
 </div>
   {% include('footer.html') %}
 {% endblock %}

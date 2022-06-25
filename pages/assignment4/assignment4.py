@@ -93,35 +93,39 @@ def js_users():
     users_list = interact_db(query, query_type='fetch')
     return jsonify(users_list)
 
-def save_users_to_session(pockemons):
+def save_users_to_session(userlist):
     users_list_to_save = []
-    for pockemon in pockemons:
-        pockemons_dict = {
-            'sprites': {
-                'front_default': pockemon['sprites']['front_default']
-            },
-            'name': pockemon['name'],
-            'height': pockemon['height'],
-            'weight': pockemon['weight'],
+    for user in userlist:
+        print(user['data']['email'])
+        userlist_dict = {
+            'id':user['data']['id'],
+            'pic': user['data']['avatar'],
+            'name': user['data']['first_name'],
+            'email': user['data']['email'],
         }
-        users_list_to_save.append(pockemons_dict)
-    session['pockemons'] = users_list_to_save
+        print(userlist_dict)
+        users_list_to_save.append(userlist_dict)
+    session['userlist'] = users_list_to_save
 
 
-def get_pockemons_sync(i):
-    pockemons = []
+def get_users(i):
+    userList = []
     res = requests.get(f'https://reqres.in/api/users/{i}')
     print(res)
-    pockemons.append(res.json())
-    return pockemons
+    userList.append(res.json())
+    return userList
 
 @assignment4.route('/assignment4/outer_source')
 def URL_JSON():
     if 'userID' in request.args:
-      pockemons = []
-      userid = request.args['userID']
-      pockemons = get_pockemons_sync(userid)
-      save_users_to_session(pockemons)
+        if(request.args['userID']!=''):
+         userList = []
+         userid = request.args['userID']
+         userList = get_users(userid)
+         save_users_to_session(userList)
+         return render_template('frontend.html')
+        else:
+         return render_template('frontend.html')
     else:
         session.clear()
     return render_template('frontend.html')

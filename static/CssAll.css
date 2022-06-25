@@ -12,6 +12,11 @@
 
 }
 
+#listnames{
+	border: black;
+	margin: auto;
+	padding: inherit;
+}
 .title{
 	text-transform: uppercase;
 	font-size: 140%;
@@ -581,3 +586,4 @@ ul{
 }
 
 /* End Grid Page */
+

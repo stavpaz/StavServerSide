@@ -4,7 +4,7 @@
 #'f'os.environ.get('DB_PASSWORD')'
 
 from flask import Blueprint, render_template, session, jsonify, request, redirect
-import mysql.connector
+import mysql.connector,requests
 assignment4 = Blueprint('assignment4', __name__,
                          static_folder='static',
                          template_folder='templates')
@@ -38,12 +38,13 @@ def interact_db(query, query_type: str):
 
 @assignment4.route('/assignment4')
 def Assign4_page():
-    return render_template('assignment_4.html')
+    return render_template('assignment4.html')
 @assignment4.route('/users')
 def users():
     query = 'select * from users'
     users_list = interact_db(query, query_type='fetch')
     return render_template('users.html', users=users_list)
+
 
 @assignment4.route('/insert_user', methods=['POST'])
 def insert_user():
@@ -85,3 +86,42 @@ def delete_user_func():
     query = 'select * from users'
     users_list = interact_db(query, query_type='fetch')
     return render_template('users.html',message='user deleted successfully',users=users_list)
+
+@assignment4.route('/assignment4/frontend')
+def js_users():
+    query = 'select * from users'
+    users_list = interact_db(query, query_type='fetch')
+    return jsonify(users_list)
+
+def save_users_to_session(pockemons):
+    users_list_to_save = []
+    for pockemon in pockemons:
+        pockemons_dict = {
+            'sprites': {
+                'front_default': pockemon['sprites']['front_default']
+            },
+            'name': pockemon['name'],
+            'height': pockemon['height'],
+            'weight': pockemon['weight'],
+        }
+        users_list_to_save.append(pockemons_dict)
+    session['pockemons'] = users_list_to_save
+
+
+def get_pockemons_sync(i):
+    pockemons = []
+    res = requests.get(f'https://reqres.in/api/users/{i}')
+    print(res)
+    pockemons.append(res.json())
+    return pockemons
+
+@assignment4.route('/assignment4/outer_source')
+def URL_JSON():
+    if 'userID' in request.args:
+      pockemons = []
+      userid = request.args['userID']
+      pockemons = get_pockemons_sync(userid)
+      save_users_to_session(pockemons)
+    else:
+        session.clear()
+    return render_template('frontend.html')

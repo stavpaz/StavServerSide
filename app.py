@@ -194,14 +194,9 @@ def logout_func():
 def session_func():
     # print(session['CHECK'])
     return jsonify(dict(session))
-# @app.route('/assignment_4.html')
-# def Assign4_page():
-#     return render_template('assignment_4.html')
+
 from pages.assignment4.assignment4 import assignment4
 app.register_blueprint(assignment4)
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

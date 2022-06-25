@@ -13,7 +13,7 @@
             <input type="text" name="inputUsername"  id ="inputUsername" placeholder="Username"  required> <br>
             <input type="email" name="inputEmail" id="inputEmail" placeholder="Email" required><br>
             <input type="password" name="inputPassword" id="inputPassword" placeholder="Password" minlength="6" required><br>
-            <input type="submit" onclick="popmessages()">
+            <input type="submit" >
 
 
         </form>
@@ -32,11 +32,12 @@
              </form>
             <form action="/delete_user" method="post">
                 <input type="hidden" name="user_id" value="{{ user.username }}">
-                <input type="submit" value="Delete" onclick="popmessages()">
+                <input type="submit" value="Delete">
             </form>
 
         </div>
     {% endfor %}
+
 </div>
  {% include('footer.html') %}
 {% endblock %}

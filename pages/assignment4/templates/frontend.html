@@ -1,0 +1,16 @@
+{% extends 'blocks.html' %}
+{% block content %}
+{% include('nav.html') %}
+<div>
+ <form action="/assignment4/outer_source">
+            <label>User ID : </label>
+            <input type="text" name="userID"  id ="userID"><br>
+        </form>
+    <h3>User: <button onclick="myFunction()">Search</button></h3>
+
+    <main>
+
+    </main>
+</div>
+  {% include('footer.html') %}
+{% endblock %}

@@ -2,7 +2,6 @@
 {% block content %}
 {% include('nav.html') %}
 <div>
-
  {% if session['logedin'] %}
         <h1>Welcome, {{ session['username'] | upper() }} <br>
          <h3>you are in assignment4 page </h3></h1><br>
@@ -14,6 +13,14 @@
  <br>
  <a href="{{url_for('assignment4.users')}}" style="color: #000000">users </a><br>
 {% endif %}
+ <h1>Fetch - FrontEnd</h1>
+  <h3>User List:
+    <button onclick="myFunction()">Click me</button></h3>
+   <main>
+
+    </main>
+
+
 </div>
   {% include('footer.html') %}
 {% endblock %}

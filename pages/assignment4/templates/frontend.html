@@ -3,13 +3,11 @@
 {% include('nav.html') %}
 <div>
  <form action="/assignment4/outer_source" method="get">
-            <label>User ID : </label>
+            <label>Please enter User ID  : </label>
             <input type="text" name="userID"  id ="userID"><br>
-            <input type="submit" value="Search">
+            <input type="submit" value="SearchWithBackEnd">
         </form>
-
-
-     <h1>BackEnd</h1>
+<button onclick="myFunction()">SearchWithFrontEnd</button>
 
 
     {% if session.userlist %}
@@ -22,8 +20,6 @@
             <hr>
         {% endfor %}
     {% endif %}
-    <h1> FrontEnd </h1>
-    <h3>User: <button onclick="myFunction()">Search</button></h3>
 
     <main>
 

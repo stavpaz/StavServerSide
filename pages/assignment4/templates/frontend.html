@@ -2,14 +2,15 @@
 {% block content %}
 {% include('nav.html') %}
 <div>
+    <h1>Outer Source Page </h1> <br>
  <form action="/assignment4/outer_source" method="get">
             <label>Please enter User ID  : </label>
             <input type="text" name="userID"  id ="userID"><br>
             <input type="submit" value="SearchWithBackEnd">
         </form>
-<button onclick="myFunction()">SearchWithFrontEnd</button>
 
 
+<h3>BackEnd Results :</h3>
     {% if session.userlist %}
         {% for user in session.userlist %}
             <h4>UserID: {{ user.id }}</h4>
@@ -17,10 +18,12 @@
             <h4>Name: {{ user.name }}</h4>
             <h4>Email: {{ user.email }}</h4>
 
-            <hr>
+
         {% endfor %}
     {% endif %}
-
+    <hr>
+    <button onclick="myFunction()">SearchWithFrontEnd</button>
+<h3>FrontEnd Results:</h3>
     <main>
 
     </main>

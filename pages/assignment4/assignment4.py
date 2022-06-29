@@ -13,10 +13,10 @@ assignment4 = Blueprint('assignment4', __name__,
 
 def interact_db(query, query_type: str):
     return_value = False
-    connection = mysql.connector.connect(host='localhost',
-                                         user='root',
+    connection = mysql.connector.connect(host=os.environ.get('DB_HOST'),
+                                         user=os.environ.get('DB_USER'),
                                          passwd=os.environ.get('DB_PASSWORD'),
-                                         database='myflaskappdb')
+                                         database=os.environ.get('DB_NAME'))
     cursor = connection.cursor(named_tuple=True)
     cursor.execute(query)
     #
@@ -76,7 +76,7 @@ def insert_user():
         return render_template('users.html', message='user added successfully', users=users_list)
     query = 'select * from users'
     users_list = interact_db(query, query_type='fetch')
-    return render_template('users.html', message='username already exist',users=users_list)
+    return render_template('users.html', message='username already exist', users=users_list)
 
 
 @assignment4.route('/updateuser', methods=['POST'])
@@ -116,7 +116,7 @@ def delete_user_func():
 
 @assignment4.route('/assignment4/users')
 def js_users():
-    query = 'select * from users'
+    query = 'select  username,name,email from users'
     users_list = interact_db(query, query_type='fetch')
     return jsonify(users_list)
 
@@ -148,11 +148,15 @@ def get_users(i):
 def URL_JSON():
     if 'userID' in request.args:
         if (request.args['userID'] != ''):
-            userList = []
-            userid = request.args['userID']
-            userList = get_users(userid)
-            save_users_to_session(userList)
-            return render_template('frontend.html')
+            if (int(request.args['userID'])<13):
+                userList = []
+                userid = request.args['userID']
+                userList = get_users(userid)
+                save_users_to_session(userList)
+                return render_template('frontend.html')
+            else:
+                session.clear()
+                return render_template('frontend.html',message="ID doesnt exists in BackEnd")
         else:
             return render_template('frontend.html')
     else:

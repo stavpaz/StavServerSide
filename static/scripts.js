@@ -8,9 +8,10 @@ const navLinks = document.querySelectorAll('nav a').forEach(link => {
 
 
 function myFunction() {
-m = document.getElementById("userID").value;
 
-    fetch("https://reqres.in/api/users/"+m).then(
+    m = document.getElementById("userID").value;
+
+    fetch("https://reqres.in/api/users/" + m).then(
         response => response.json()
     ).then(
         response => createUsersList(response.data)
@@ -24,11 +25,13 @@ function createUsersList(response) {
 
     m = document.getElementById("userID").value;
     const currMain = document.querySelector("main")
+
     if (m != '') {
-        let user=response
-                console.log(user)
-                const section = document.createElement('section')
-                section.innerHTML = `
+        if (m < 13) {
+            let user = response
+            console.log(user)
+            const section = document.getElementById("present")
+            section.innerHTML = `
                 <h5>User ID : <span>${user.id} </span>  </h5> <br>
                 <img src="${user.avatar}" alt="Profile Picture"/>
                 <div>
@@ -37,13 +40,27 @@ function createUsersList(response) {
                 <a href="mailto:${user.email}">Send Email</a>
                 </div>
                 `
-                currMain.appendChild(section)
-            }
-    else
-        {
-            for (let user of response) {
-                const section = document.createElement('section')
-                section.innerHTML = `
+
+            currMain.appendChild(section)
+
+        }
+        else{
+            const section = document.getElementById("present")
+            section.innerHTML = `
+                
+                <div>
+               
+                   <h3 style="color: red">ID doesnt exists in FrontEnd</h3>
+                
+                </div>
+                `
+            currMain.appendChild(section)
+
+        }
+    } else {
+        for (let user of response) {
+            const section = document.getElementById("present")
+            section.innerHTML = `
             <h5>User ID : <span>${user.id} </span>  </h5> <br>
             <img src="${user.avatar}" alt="Profile Picture"/>
             <div>
@@ -52,9 +69,9 @@ function createUsersList(response) {
              <a href="mailto:${user.email}">Send Email</a>
             </div>
         `
-                currMain.appendChild(section)
-            }
+            currMain.appendChild(section)
         }
+    }
 
 
 }

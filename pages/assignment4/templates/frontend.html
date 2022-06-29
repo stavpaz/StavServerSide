@@ -9,7 +9,9 @@
             <input type="submit" value="SearchWithBackEnd">
         </form>
 
-
+{% if message %}
+            <h3 style="color: red">{{ message }}</h3>
+          {% endif %}
 <h3>BackEnd Results :</h3>
     {% if session.userlist %}
         {% for user in session.userlist %}
@@ -25,7 +27,9 @@
     <button onclick="myFunction()">SearchWithFrontEnd</button>
 <h3>FrontEnd Results:</h3>
     <main>
+     <section id="present">
 
+     </section>
     </main>
 
 
